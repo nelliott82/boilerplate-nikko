@@ -14,9 +14,7 @@ app.use('/api', require('../api'));
 const port = process.env.PORT || 3000;
 
 app.listen(port, function() {
-  console.log('Hello? Anyone there?');
-  console.log("That depends. Who's asking?");
-  console.log(`Oh sure, sir. My name is server number ${port}`);
+  console.log(`Server number ${port}, coming right up!`);
 });
 
 app.get('*', function(req, res) {
