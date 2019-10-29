@@ -17,8 +17,9 @@ app.listen(port, function() {
   console.log(`Server number ${port}, coming right up!`);
 });
 
-app.get('*', function(req, res) {
+app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'));
+  // res.send('blah')
 });
 
 app.use(function(err, req, res, next) {
