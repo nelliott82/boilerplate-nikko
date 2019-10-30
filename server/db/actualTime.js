@@ -19,7 +19,11 @@ const ActualTime = db.define('actualTime', {
     allowNull: false,
   },
   time: {
-    type: Sequelize.NUMBER,
+    type: Sequelize.DECIMAL(10, 2),
+    allowNull: false,
+  },
+  otherExplanation: {
+    type: Sequelize.TEXT,
     allowNull: false,
   }
 });

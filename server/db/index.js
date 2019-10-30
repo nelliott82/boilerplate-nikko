@@ -8,8 +8,8 @@ const ActualTime = require('./actualTime');
 const BudgetTime = require('./budgetTime');
 const ReforecastTime = require('./reforecastTime');
 
-Department.hasMany(User, { as: User });
-Department.hasMany(Process, { as: Process });
+User.belongsToMany(Department, { through: 'DepartmentUser' });
+Process.belongsToMany(Department, { through: 'DepartmentProcess' });
 
 module.exports = {
   db,

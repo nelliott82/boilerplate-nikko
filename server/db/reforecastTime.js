@@ -4,23 +4,23 @@ const db = require('./db');
 const ReforecastTime = db.define('reforecastTime', {
   week: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    // allowNull: false,
   },
   process: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    // allowNull: false,
   },
   department: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    // allowNull: false,
   },
   user: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    // allowNull: false,
   },
   time: {
-    type: Sequelize.NUMBER,
-    allowNull: false,
+    type: Sequelize.DECIMAL(10, 2),
+    // allowNull: false,
   }
 });
 

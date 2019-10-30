@@ -14,9 +14,37 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-        isEmail: true,
-    }
+      isEmail: true,
+    },
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
+  isManager: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
   },
 });
+
+// User.beforeValidate(function(user) {
+//   if (user.isAdmin === 'true') {
+//     user.isAdmin = true;
+//   } else {
+//     user.isAdmin = false;
+//   }
+// });
+
+// User.beforeValidate(function(user) {
+//   if (user.isManager === 'true') {
+//     user.isManager = true;
+//   } else {
+//     user.isManager = false;
+//   }
+// });
 
 module.exports = User;
