@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /* eslint-disable max-statements */
 const { green, red } = require('chalk');
 const {
@@ -154,7 +155,6 @@ const seed = async () => {
     await other.addDepartment(tax);
     await other.addDepartment(accounting);
     await other.addDepartment(humanResources);
-    
 
     for (let i = 0; i < 3; i++) {
       let departments = [tax, accounting, legal, humanResources];
@@ -165,7 +165,7 @@ const seed = async () => {
           name: firstName + ' ' + lastName,
           employeeId: Math.floor(Math.random() * 1000),
           email: firstName.charAt(0) + lastName + '@company.com',
-          password: '12345'
+          password: '12345',
         });
         await employee.addDepartment(departments[i]);
       }
@@ -199,28 +199,105 @@ const seed = async () => {
 
     await adminEmployee.addDepartment(accounting);
 
-    let friday = new Date(2020, 0, 3, 5, 0, 0)
-    for (let i = 0; i < 52; i++){
-        if (i === 0) {
-            await Week.create({
-                week: friday
-            })
-        } else {
-            let nextWeek = friday.setDate(friday.getDate() + 7)
-            await Week.create({
-                week: nextWeek
-            })
-        }
+    let friday = new Date(2020, 0, 3, 5, 0, 0);
+    for (let i = 0; i < 52; i++) {
+      if (i === 0) {
+        await Week.create({
+          week: friday,
+        });
+      } else {
+        let nextWeek = friday.setDate(friday.getDate() + 7);
+        await Week.create({
+          week: nextWeek,
+        });
+      }
     }
 
-    // week
-    // process
-    // department
-    // user
-    // time
-    // otherexplanation
+    for (let i = 1; i < 53; i++) {
+      for (let j = 1; j < 17; j++) {
+        let deptIdData = await User.findOne({
+            where: {
+                id: j
+            },
+            include: [
+                {model: Department}
+            ]
+        })
+        let deptId = deptIdData.dataValues.departments[0].dataValues.id
+        await ActualTime.create({
+          week: i,
+          process: Math.ceil(Math.random() * 21),
+          department: deptId,
+          user: j,
+          time: Math.round(Math.random() * 10000) / 100,
+        });
+      }
+    }
 
-    
+    for (let i = 1; i < 53; i++) {
+        for (let j = 1; j < 17; j++) {
+          let deptIdData = await User.findOne({
+              where: {
+                  id: j
+              },
+              include: [
+                  {model: Department}
+              ]
+          })
+          let deptId = deptIdData.dataValues.departments[0].dataValues.id
+          await BudgetTime.create({
+            week: i,
+            process: Math.ceil(Math.random() * 21),
+            department: deptId,
+            user: j,
+            time: Math.round(Math.random() * 10000) / 100,
+          });
+        }
+      }
+
+
+    for (let i = 1; i < 53; i++) {
+        for (let j = 17; j < 21; j++) {
+          let deptIdData = await User.findOne({
+              where: {
+                  id: j
+              },
+              include: [
+                  {model: Department}
+              ]
+          })
+          let deptId = deptIdData.dataValues.departments[0].dataValues.id
+          await ActualTime.create({
+            week: i,
+            process: 21,
+            department: deptId,
+            user: j,
+            time: Math.round(Math.random() * 10000) / 100,
+            otherExplanation: faker.random.words(3),
+          });
+        }
+      }
+  
+      for (let i = 1; i < 53; i++) {
+          for (let j = 17; j < 21; j++) {
+            let deptIdData = await User.findOne({
+                where: {
+                    id: j
+                },
+                include: [
+                    {model: Department}
+                ]
+            })
+            let deptId = deptIdData.dataValues.departments[0].dataValues.id
+            await BudgetTime.create({
+              week: i,
+              process: Math.ceil(Math.random() * 21),
+              department: deptId,
+              user: j,
+              time: Math.round(Math.random() * 10000) / 100,
+            });
+          }
+        }
 
   } catch (err) {
     console.log(red(err));

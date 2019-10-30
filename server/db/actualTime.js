@@ -24,7 +24,6 @@ const ActualTime = db.define('actualTime', {
   },
   otherExplanation: {
     type: Sequelize.TEXT,
-    allowNull: false,
   }
 });
 
