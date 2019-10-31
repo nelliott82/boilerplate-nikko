@@ -3,19 +3,19 @@ const db = require('./db');
 
 const ActualTime = db.define('actualTime', {
   week: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.DATE,
     allowNull: false,
   },
   process: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false,
   },
   department: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false,
   },
   user: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false,
   },
   time: {
