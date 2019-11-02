@@ -1,3 +1,33 @@
 h1 {
-    color: blue;
+  color: blue;
+}
+
+nav {
+  align-items: center;
+  background-color: #5fa7de;
+  color: #c0c0c0;
+  display: flex;
+  height: 40px;
+  padding: 10px;
+}
+
+#navbarLinks {
+  display: flex;
+  justify-content: flex-start;
+  width: 100vw;
+}
+
+.links {
+  color: #370374;
+  padding: 10px;
+}
+
+#selectorsDiv {
+  display: flex;
+  justify-content: flex-start;
+  width: 100vw;
+}
+
+.selectors {
+  padding: 10px;
 }

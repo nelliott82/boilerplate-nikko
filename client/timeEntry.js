@@ -3,7 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchAllCompanies } from './redux/companies';
 import { fetchAllProcesses } from './redux/processes';
-import { fetchSingleUser } from './redux/singleUser';
 
 class TimeEntry extends React.Component {
   constructor() {
@@ -17,6 +16,10 @@ class TimeEntry extends React.Component {
   componentDidMount() {
     this.props.getCompanies();
     this.props.getProcesses();
+  }
+
+  handleChange() {
+    
   }
 
   createCell(cell, text) {
@@ -33,6 +36,14 @@ class TimeEntry extends React.Component {
     option.setAttribute('value', 'companies');
     option.innerText = 'Companies';
     select.appendChild(option);
+    const optionsArr = this.props.companies.map(company => {
+      let option2 = document.createElement('option');
+      option2.setAttribute('key', `${company.id}`);
+      option2.setAttribute('value', `${company.companyName}`);
+      option2.innerText = `${company.companyName}`;
+      return option2;
+    });
+    select.append(...optionsArr);
     for (let i = 0; i < tbl.rows.length; i++) {
       if (i === 0) {
         this.createCell(
@@ -41,6 +52,7 @@ class TimeEntry extends React.Component {
         );
       } else {
         let input = document.createElement('input');
+        input.addEventListener('change', this.handleChange);
         this.createCell(
           tbl.rows[i].insertCell(tbl.rows[i].cells.length),
           input
@@ -58,11 +70,20 @@ class TimeEntry extends React.Component {
     option.setAttribute('value', 'processes');
     option.innerText = 'Processes';
     select.appendChild(option);
+    const optionsArr = this.props.processes.map(process => {
+      let option2 = document.createElement('option');
+      option2.setAttribute('key', `${process.id}`);
+      option2.setAttribute('value', `${process.processName}`);
+      option2.innerText = `${process.processName}`;
+      return option2;
+    });
+    select.append(...optionsArr);
     for (let i = 0; i < tbl.rows[0].cells.length; i++) {
       if (i === 0) {
         this.createCell(row.insertCell(i), select);
       } else {
         let input = document.createElement('input');
+        input.addEventListener('change', this.handleChange);
         this.createCell(row.insertCell(i), input);
       }
     }
@@ -76,10 +97,10 @@ class TimeEntry extends React.Component {
     return (
       <div>
         <button type="button" onClick={this.addRow}>
-          Add Row
+          Add Process
         </button>
         <button type="button" onClick={this.addColumn}>
-          Add Column
+          Add Company
         </button>
         <form onSubmit={this.handleSubmit}>
           <table id="time-table">
@@ -132,12 +153,15 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    getCompanies: () => {
-      dispatch(fetchAllCompanies())
-    },
-    getProcesses: () => {
-      dispatch(fetchAllProcesses())
-    }
+  getCompanies: () => {
+    dispatch(fetchAllCompanies());
+  },
+  getProcesses: () => {
+    dispatch(fetchAllProcesses());
+  },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TimeEntry);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TimeEntry);

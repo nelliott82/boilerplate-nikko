@@ -10,6 +10,10 @@ const BudgetTime = db.define('budgetTime', {
     type: Sequelize.STRING,
     // allowNull: false,
   },
+  company: {
+    type: Sequelize.STRING,
+    // allowNull: false,
+  },
   department: {
     type: Sequelize.STRING,
     // allowNull: false,

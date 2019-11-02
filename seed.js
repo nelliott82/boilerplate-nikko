@@ -216,6 +216,7 @@ const seed = async () => {
       }
     }
 
+    const companyArr = ['Company A', 'Company B', 'Company C', 'Company D']
     for (let i = 0; i < 52; i++) {
       for (let j = 1; j < 17; j++) {
         // let deptIdData = await User.findOne({
@@ -227,10 +228,12 @@ const seed = async () => {
         //     ]
         // })
         // let deptId = deptIdData.dataValues.departments[0].dataValues.id
+        let randomCo = Math.floor(Math.random() * 4)
         await ActualTime.create({
           week: weeksArr[i],
           process: faker.random.words(3),
           department: faker.random.words(1),
+          company: companyArr[randomCo],
           user: faker.name.firstName() + ' ' + faker.name.lastName(),
           time: Math.round(Math.random() * 10000) / 100,
         });
@@ -239,10 +242,12 @@ const seed = async () => {
 
     for (let i = 0; i < 52; i++) {
         for (let j = 1; j < 17; j++) {
+          let randomCo = Math.floor(Math.random() * 4)
           await BudgetTime.create({
             week: weeksArr[i],
             process: faker.random.words(3),
             department: faker.random.words(1),
+            company: companyArr[randomCo],
             user: faker.name.firstName() + ' ' + faker.name.lastName(),
             time: Math.round(Math.random() * 10000) / 100,
           });
@@ -252,10 +257,12 @@ const seed = async () => {
 
     for (let i = 0; i < 52; i++) {
         for (let j = 17; j < 21; j++) {
+          let randomCo = Math.floor(Math.random() * 4)
           await ActualTime.create({
             week: weeksArr[i],
             process: 'Other',
             department: faker.random.words(1),
+            company: companyArr[randomCo],
             user: faker.name.firstName() + ' ' + faker.name.lastName(),
             time: Math.round(Math.random() * 10000) / 100,
             otherExplanation: faker.random.words(3),
@@ -265,10 +272,12 @@ const seed = async () => {
   
       for (let i = 0; i < 52; i++) {
           for (let j = 17; j < 21; j++) {
+            let randomCo = Math.floor(Math.random() * 4)
             await BudgetTime.create({
               week: weeksArr[i],
               process: faker.random.words(3),
               department: faker.random.words(1),
+              company: companyArr[randomCo],
               user: faker.name.firstName() + ' ' + faker.name.lastName(),
               time: Math.round(Math.random() * 10000) / 100,
             });

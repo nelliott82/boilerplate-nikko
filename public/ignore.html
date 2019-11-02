@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1>Here is a bar chart</h1>
+    <br />
+    <select id="selectOptions" onChange="handleChange(this)">
+      <option value="">Select</option>
+      <option value="dataset1">dataset1</option>
+      <option value="dataset2">dataset2</option>
+    </select>
+    <br />
+    <svg class="bar-chart"></svg>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

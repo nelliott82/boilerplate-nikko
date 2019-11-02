@@ -10,6 +10,10 @@ const ActualTime = db.define('actualTime', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  company: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   department: {
     type: Sequelize.STRING,
     allowNull: false,
